@@ -3,7 +3,7 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
 import { JsonPipe } from '@angular/common';
 
-import { Room } from '../models/room';
+import { Room, RoomDetail } from '../models/room';
 import { RoomService } from '../services/room.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -18,7 +18,7 @@ export class RoomsContainerComponent implements OnInit, OnDestroy {
     private _interval: number;
 
     rooms: Room[];
-    selectedRoomDetail: any;
+    selectedRoomDetail: RoomDetail;
 
     constructor(private roomService: RoomService) {
         this._alive = true;
@@ -34,12 +34,19 @@ export class RoomsContainerComponent implements OnInit, OnDestroy {
     }
 
     getRooms(): void {
+
         TimerObservable.create(0, this._interval)
             .takeWhile(() => this._alive)
-            .subscribe(() =>{
+            .subscribe(() => {
                 this.roomService
                     .getRooms()
-                    .subscribe(rooms => this.rooms = rooms)
+                    .subscribe(rooms => {
+                        this.rooms = rooms;
+
+                        if(this.selectedRoomDetail) {
+                            this.selectRoom(this.selectedRoomDetail.id);
+                        }
+                    });
             });
     }
 
@@ -55,7 +62,6 @@ export class RoomsContainerComponent implements OnInit, OnDestroy {
     }
 
     onRoomSelected(room: Room): void {
-        console.log('onRoomSelected', room);
         this.selectRoom(room.id);
     }
 }

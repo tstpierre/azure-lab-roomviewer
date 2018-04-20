@@ -1,5 +1,13 @@
 <mat-list role="list">
     <mat-list-item role="listItem" *ngFor="let room of rooms">
-        <button mat-raised-button style="width:100%" (click)="onRoomSelected(room)">{{ room.displayName }}</button>
+        <button mat-raised-button style="width:100%" (click)="onRoomSelected(room)">
+            <span matTooltip="Occupied" matTooltipPosition="above" *ngIf="isOccupied(room)" style="height: 48px;">
+                <mat-icon class="occupied">remove_circle</mat-icon>
+            </span>
+            <span matTooltip="Unoccupied" matTooltipPosition="above" style="height: 48px;">
+                <mat-icon class="unoccupied">remove_circle</mat-icon>
+            </span>
+            <span class="room-name" style="height: 48px;">{{ room.displayName }}</span>
+        </button>
     </mat-list-item>
 </mat-list>

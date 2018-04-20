@@ -1,17 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { RoomDetail, RoomState } from '../models/room';
+
 @Component({
-  selector: 'room-detail',
-  templateUrl: './room-detail.component.html',
-  styleUrls: ['./room-detail.component.scss']
+    selector: 'room-detail',
+    templateUrl: './room-detail.component.html',
+    styleUrls: ['./room-detail.component.scss']
 })
 export class RoomDetailComponent implements OnInit {
 
-  @Input() roomDetail: any;
+    @Input() roomDetail: RoomDetail;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() { }
+
+    isOccupied(): boolean {
+        return this.roomDetail.currentState === RoomState.Occupied;
+    }
 
 }

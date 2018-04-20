@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
-import { Room } from '../models/room';
+import { Room, RoomState } from '../models/room';
 
 @Component({
     selector: 'room-list',
@@ -14,11 +14,13 @@ export class RoomListComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     onRoomSelected(room: Room): void {
         this.selectedEvent.emit(room);
     }
 
+    isOccupied(room: Room): boolean {
+        return room.currentState === RoomState.Occupied;
+    }
 }

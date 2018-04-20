@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { environment } from '../../../environments/environment';
-import { Room } from '../models/room';
+import { Room, RoomDetail } from '../models/room';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -27,9 +27,9 @@ export class RoomService {
         return this.http.get<Room[]>(url, httpOptions);
     }
 
-    getRoom(id: string): Observable<Room> {
+    getRoom(id: string): Observable<RoomDetail> {
 
         const url: string  = `${this._baseUrl}/${id}`;
-        return this.http.get<Room>(url, httpOptions);
+        return this.http.get<RoomDetail>(url, httpOptions);
     }
 }
