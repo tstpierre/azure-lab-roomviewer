@@ -1,0 +1,5 @@
+<mat-list role="list">
+    <mat-list-item role="listItem" *ngFor="let room of rooms">
+        <button mat-raised-button style="width:100%" (click)="onRoomSelected(room)">{{ room.displayName }}</button>
+    </mat-list-item>
+</mat-list>

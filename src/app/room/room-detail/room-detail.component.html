@@ -1,0 +1,17 @@
+<mat-card *ngIf="roomDetail !== undefined">
+    <mat-card-header>
+        <mat-card-title>
+            {{ roomDetail.displayName }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Raw output</p>
+        <p>
+            {{ roomDetail | json }}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <span matTooltip="Occupied" matTooltipPosition="above"><mat-icon color="primary">person</mat-icon></span>
+        <span matTooltip="Unoccupied" matTooltipPosition="above"><mat-icon color="warn">person_outline</mat-icon></span>
+    </mat-card-actions>
+</mat-card>
