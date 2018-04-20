@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
+import { environment } from '../../../environments/environment';
 import { Room } from '../models/room';
 
 const httpOptions = {
@@ -16,7 +17,7 @@ const httpOptions = {
 @Injectable()
 export class RoomService {
 
-    private _baseUrl: string = 'https://apigateway3522h00.azure-api.net/room';
+    private _baseUrl: string = environment.apis.roomBaseUrl;
 
     constructor(private http: HttpClient) { }
 
